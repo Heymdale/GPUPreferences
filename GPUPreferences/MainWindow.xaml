@@ -1,0 +1,30 @@
+﻿<Window x:Class="GPUPreferences.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GPUPreferences"
+        mc:Ignorable="d"
+        Title="GPU preferences" Height="450" Width="800">
+    <Grid Background="#FF232323">
+        <Border BorderBrush="#FF777777" BorderThickness="1" Margin="10,10,10,10">
+            <StackPanel Margin="0,0,0,0">
+                <DockPanel>
+                    <Button x:Name="LoadCurrentPreferences" Content="Load preferences" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="LoadCurrentPreferences_Click"/>
+                    <Button x:Name="CheckAndDeleteNonExists" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99">
+                        <TextBlock TextAlignment="Center"><Run Text="Check and Delete"/><LineBreak/><Run Text="non Exists element"/></TextBlock>
+                    </Button>
+                </DockPanel>
+                <DataGrid x:Name="PreferencesDataGrid" HorizontalAlignment="Center"  Margin="5,10,5,10" Height="300" Width="730" HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Address"/>
+                        <DataGridComboBoxColumn Header="Preference"/>
+                        <DataGridCheckBoxColumn Header="Check"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</Window>
