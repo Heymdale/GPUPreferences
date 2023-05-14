@@ -3,28 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GPUPreferences"
+        xmlns:model="clr-namespace:GPUPreferences.Model"
         mc:Ignorable="d"
-        Title="GPU preferences" Height="450" Width="800">
+        Title="GPU preferences" Height="420" Width="890">
+    <Window.Resources>
+        <!--Create list of enumeration values-->
+        <ObjectDataProvider x:Key="States" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="model:PrefState"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid Background="#FF232323">
         <Border BorderBrush="#FF777777" BorderThickness="1" Margin="10,10,10,10">
             <StackPanel Margin="0,0,0,0">
                 <DockPanel>
                     <Button x:Name="LoadCurrentPreferences" Content="Load preferences" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="LoadCurrentPreferences_Click"/>
-                    <Button x:Name="CheckAndDeleteNonExists" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99">
-                        <TextBlock TextAlignment="Center"><Run Text="Check and Delete"/><LineBreak/><Run Text="non Exists element"/></TextBlock>
+                    <Button x:Name="CheckNonExists" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="CheckNonExists_Click">
+                        <TextBlock TextAlignment="Center"><Run Text="Check non Exists"/> <LineBreak/><Run Text="element"/></TextBlock>
                     </Button>
+                    <Button x:Name="SwitchExplorerContext" Content="{Binding SwitchExplorerContext, UpdateSourceTrigger = PropertyChanged}"  HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99"/>
+                    <Button x:Name="ChooseAll" Content="Choose all" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="ChooseAll_Click"/>
+                    <Button x:Name="DeleteChoosen" Content="Delete Choosen"  HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="DeleteChoosen_Click"/>
                 </DockPanel>
-                <DataGrid x:Name="PreferencesDataGrid" HorizontalAlignment="Center"  Margin="5,10,5,10" Height="300" Width="730" HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Address"/>
-                        <DataGridComboBoxColumn Header="Preference"/>
-                        <DataGridCheckBoxColumn Header="Check"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <Grid>
+                    <DataGrid x:Name="PreferencesDataGrid"
+                              AutoGenerateColumns="False"
+                              HorizontalAlignment="Center"  
+                              Margin="5,10,5,10" 
+                              Height="300" 
+                              Width="830" 
+                              HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" 
+                              VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Address" 
+                                                Binding="{Binding Path=Address}"/>
+                            <DataGridComboBoxColumn Header="Preference" 
+                                                    SelectedItemBinding="{Binding Path=State}" 
+                                                    ItemsSource="{Binding Source={StaticResource States}}"/>
+                            <DataGridCheckBoxColumn Header="Check" 
+                                                    Binding="{Binding Path=Check}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </StackPanel>
         </Border>
-
-
     </Grid>
 </Window>

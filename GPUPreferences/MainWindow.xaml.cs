@@ -12,25 +12,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using GPUPreferences.Model;
+using GPUPreferences.Services;
 
 namespace GPUPreferences
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        PrefCollection data = new PrefCollection();
         public MainWindow()
         {
             InitializeComponent();
-            var data = RegistryTools.ReadRegistry();
-            PreferencesDataGrid.ItemsSource = data;
+            data.Preferences = RegistryTools.ReadRegistry();
+            PreferencesDataGrid.ItemsSource = data.Preferences;
+
         }
 
         private void LoadCurrentPreferences_Click(object sender, RoutedEventArgs e)
         {
-            var data = RegistryTools.ReadRegistry();
-            PreferencesDataGrid.ItemsSource = data;
+            data.Preferences = RegistryTools.ReadRegistry();
+            //RaisePropertyChanged(data);
+        }
+
+        private void CheckNonExists_Click(object sender, RoutedEventArgs e)
+        {
+            data.Preferences = Checker.CheckNonExist(data.Preferences);
+        }
+
+        private void ChooseAll_Click(object sender, RoutedEventArgs e)
+        {
+            data.Preferences = Checker.CheckAllOrNone(data.Preferences);
+        }
+
+        private void DeleteChoosen_Click(object sender, RoutedEventArgs e)
+        {
+            data.Preferences = DeleteChecked.DeleteCheckedFromRegister(data.Preferences);
         }
     }
 }

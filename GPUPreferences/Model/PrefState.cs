@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GPUPreferences
+namespace GPUPreferences.Model
 {
     public enum PrefState
     {
