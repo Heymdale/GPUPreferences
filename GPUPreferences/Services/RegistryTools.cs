@@ -11,14 +11,16 @@ namespace GPUPreferences.Services
 {
     public class RegistryTools
     {
+        private static readonly RegistryKey HKCU = Registry.CurrentUser;
+        private static readonly RegistryKey writableDirectory = HKCU.OpenSubKey("SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences", true);
+        private static readonly RegistryKey readonlyDirectory = HKCU.OpenSubKey("SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences");
+
         public static ObservableCollection<Pref> ReadRegistry()
         {
-            RegistryKey HKCU = Registry.CurrentUser;
-            RegistryKey neededDirectory = HKCU.OpenSubKey("SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences");
             ObservableCollection<Pref> data = new ObservableCollection<Pref>();
-            foreach (var address in neededDirectory.GetValueNames())
+            foreach (var address in readonlyDirectory.GetValueNames())
             {
-                string state_text = neededDirectory.GetValue(address).ToString();
+                string state_text = readonlyDirectory.GetValue(address).ToString();
                 int state = Convert.ToInt32(state_text.Substring(state_text.Length - 2, 1));
 
                 data.Add(new Pref() { Address = address, State = (PrefState)state, Check = false });
@@ -28,9 +30,8 @@ namespace GPUPreferences.Services
 
         public static void DeleteRegKey(string key)
         {
-            RegistryKey HKCU = Registry.CurrentUser;
-            RegistryKey neededDirectory = HKCU.OpenSubKey("SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences", true);
-            neededDirectory.DeleteValue(key, true);
+
+            writableDirectory.DeleteValue(key, true);
         }
     }
 }
