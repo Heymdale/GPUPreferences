@@ -15,9 +15,9 @@ namespace GPUPreferences.Services
         private static readonly RegistryKey writableDirectory = HKCU.OpenSubKey("SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences", true);
         private static readonly RegistryKey readonlyDirectory = HKCU.OpenSubKey("SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences");
 
-        public static ObservableCollection<Pref> ReadRegistry()
+        public static void ReadRegistry(ObservableCollection<Pref> data)
         {
-            ObservableCollection<Pref> data = new ObservableCollection<Pref>();
+            data.Clear();
             foreach (var address in readonlyDirectory.GetValueNames())
             {
                 string state_text = readonlyDirectory.GetValue(address).ToString();
@@ -25,12 +25,11 @@ namespace GPUPreferences.Services
 
                 data.Add(new Pref() { Address = address, State = (PrefState)state, Check = false });
             }
-            return data;
+            return;
         }
 
         public static void DeleteRegKey(string key)
         {
-
             writableDirectory.DeleteValue(key, true);
         }
     }

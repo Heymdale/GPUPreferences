@@ -91,7 +91,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\PrefProperties.cs" />
     <Compile Include="Services\DeleteChecked.cs" />
     <Compile Include="Services\Checker.cs" />
     <Page Include="MainWindow.xaml">

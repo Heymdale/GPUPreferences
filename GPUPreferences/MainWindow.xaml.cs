@@ -20,35 +20,34 @@ namespace GPUPreferences
 {
     public partial class MainWindow : Window
     {
-        ObservableCollection<Pref> data = null;
+        ObservableCollection<Pref> data = new ObservableCollection<Pref> { };
         public MainWindow()
         {
             InitializeComponent();
             // Must be moved in Services
-            data = RegistryTools.ReadRegistry();
+            RegistryTools.ReadRegistry(data);
             PreferencesDataGrid.ItemsSource = data;
 
         }
 
         private void LoadCurrentPreferences_Click(object sender, RoutedEventArgs e)
         {
-            data = RegistryTools.ReadRegistry();
-            //RaisePropertyChanged(data);
+            RegistryTools.ReadRegistry(data);
         }
 
         private void CheckNonExists_Click(object sender, RoutedEventArgs e)
         {
-            data = Checker.CheckNonExist(data);
+            Checker.CheckNonExist(data);
         }
 
         private void ChooseAll_Click(object sender, RoutedEventArgs e)
         {
-            data = Checker.CheckAllOrNone(data);
+            Checker.CheckAllOrNone(data);
         }
 
         private void DeleteChoosen_Click(object sender, RoutedEventArgs e)
         {
-            data = DeleteChecked.DeleteCheckedFromRegister(data);
+            DeleteChecked.DeleteCheckedFromRegister(data);
         }
     }
 }

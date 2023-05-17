@@ -11,7 +11,7 @@ namespace GPUPreferences.Services
 {
     public class Checker
     {
-        public static ObservableCollection<Pref> CheckNonExist(ObservableCollection<Pref> data)
+        public static void CheckNonExist(ObservableCollection<Pref> data)
         {
             foreach (Pref el in data)
             {
@@ -24,46 +24,48 @@ namespace GPUPreferences.Services
                     el.Check = true;
                 }
             }
-            return data;
+            return;
         }
 
-        private static ObservableCollection<Pref> CheckAll(ObservableCollection<Pref> data)
+        private static void CheckAll(ObservableCollection<Pref> data)
         {
             foreach (var el in data)
             {
                 el.Check = true;
             }
-            return data;
+            return;
         }
 
-        private static ObservableCollection<Pref> CheckNone(ObservableCollection<Pref> data)
+        private static void CheckNone(ObservableCollection<Pref> data)
         {
             foreach (var el in data)
             {
                 el.Check = false;
             }
-            return data;
+            return;
         }
 
-        public static ObservableCollection<Pref> CheckAllOrNone(ObservableCollection<Pref> data)
+        public static void CheckAllOrNone(ObservableCollection<Pref> data)
         {
             foreach (Pref el in data)
             {
                 if (!el.Check)
                 {
-                    return CheckAll(data);
+                    CheckAll(data);
+                    return;
                 }
             }
-            return CheckNone(data);
+            CheckNone(data);
+            return;
         }
 
-        public static ObservableCollection<Pref> InvertAllChecks(ObservableCollection<Pref> data)
+        public static void InvertAllChecks(ObservableCollection<Pref> data)
         {
             foreach (var el in data)
             {
                 el.Check = !el.Check;
             }
-            return data;
+            return;
         }
     }
 }

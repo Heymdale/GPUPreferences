@@ -5,28 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using GPUPreferences.Model;
-
+using Microsoft.Xaml.Behaviors.Core;
 
 namespace GPUPreferences.Services
 {
     internal class DeleteChecked
     {
-        public static ObservableCollection<Pref> DeleteCheckedFromRegister(ObservableCollection<Pref> data)
+        public static void DeleteCheckedFromRegister(ObservableCollection<Pref> data)
         {
-            ObservableCollection<Pref> newData = new ObservableCollection<Pref>();
-            foreach (var el in data)
+            for (var i=0 ; i < data.Count; i++)
             {
-                if (el.Check)
+                if (data[i].Check)
                 {
-                    RegistryTools.DeleteRegKey(el.Address);
-                }
-                else
-                {
-                    newData.Add(el);
+                    RegistryTools.DeleteRegKey(data[i].Address);
+                    data.RemoveAt(i);
+                    i--;
                 }
             }
-            data = newData;
-            return data;
+            return;
         }
     }
 }
