@@ -21,10 +21,11 @@ namespace GPUPreferences
     public partial class MainWindow : Window
     {
         ObservableCollection<Pref> data = new ObservableCollection<Pref> { };
+        PrefStateForCB preferencesState = new PrefStateForCB();
         public MainWindow()
         {
             InitializeComponent();
-            // Must be moved in Services
+            PreferencesComboBox.DataContext = preferencesState;
             RegistryTools.ReadRegistry(data);
             PreferencesDataGrid.ItemsSource = data;
 
@@ -45,9 +46,24 @@ namespace GPUPreferences
             Checker.CheckAllOrNone(data);
         }
 
+        private void InvertChoosen_Click(object sender, RoutedEventArgs e)
+        {
+            Checker.InvertAllChecks(data);
+        }
+
         private void DeleteChoosen_Click(object sender, RoutedEventArgs e)
         {
             DeleteChecked.DeleteCheckedFromRegister(data);
+        }
+
+        private void SetPreferencesToChecked_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStates.ChangePreferencesStates(preferencesState, data);
+        }
+
+        private void ApplyToRegistry_Click(object sender, RoutedEventArgs e)
+        {
+            RegistryTools.ChangeRegKey(data);
         }
     }
 }

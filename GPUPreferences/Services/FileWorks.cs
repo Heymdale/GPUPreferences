@@ -14,15 +14,5 @@ namespace GPUPreferences.Services
             bool result = File.Exists(address);
             return result;
         }
-
-        public static void SaveRegFile(string filename)
-        {
-
-        }
-
-        public static List<string> ReadRegFile(string filename)
-        {
-            return null;
-        }
     }
 }

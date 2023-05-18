@@ -32,5 +32,14 @@ namespace GPUPreferences.Services
         {
             writableDirectory.DeleteValue(key, true);
         }
+
+        public static void ChangeRegKey(ObservableCollection<Pref> data)
+        {
+            foreach (var el in data)
+            {
+                string regPrefState = $"GpuPreference={(int)el.State};";
+                writableDirectory.SetValue(el.Address, regPrefState);
+            }
+        }
     }
 }

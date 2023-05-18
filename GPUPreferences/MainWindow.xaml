@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:GPUPreferences"
         xmlns:model="clr-namespace:GPUPreferences.Model"
         mc:Ignorable="d"
-        Title="GPU preferences" Height="420" Width="890">
+        Title="GPU preferences" Height="490" Width="890">
     <Window.Resources>
         <!--Create list of enumeration values-->
         <ObjectDataProvider x:Key="States" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
@@ -24,9 +24,23 @@
                     <Button x:Name="CheckNonExists" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="CheckNonExists_Click">
                         <TextBlock TextAlignment="Center"><Run Text="Check non Exists"/> <LineBreak/><Run Text="element"/></TextBlock>
                     </Button>
-                    <Button x:Name="SwitchExplorerContext" Content="{Binding SwitchExplorerContext, UpdateSourceTrigger = PropertyChanged}"  HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99"/>
+                    <Button x:Name="InvertChoosen" Content="Invert Choosen"  HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="InvertChoosen_Click"/>
                     <Button x:Name="ChooseAll" Content="Choose all" HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="ChooseAll_Click"/>
                     <Button x:Name="DeleteChoosen" Content="Delete Choosen"  HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="DeleteChoosen_Click"/>
+                </DockPanel>
+                <DockPanel>
+                    <Button x:Name="SetPreferencesToChecked" Content="Set preferences to checked"  HorizontalAlignment="Left" Height="50" Width="150" Margin="20,5,0,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="SetPreferencesToChecked_Click"></Button>
+                    <ComboBox x:Name="PreferencesComboBox" 
+                              HorizontalAlignment="Left" 
+                              Height="25" Width="150" 
+                              Margin="20,5,0,5" 
+                              VerticalAlignment="Center" 
+                              BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" 
+                              Foreground="#000000"
+                              SelectedItem="{Binding Path=PreferencesState}"
+                              ItemsSource="{Binding Source={StaticResource States}}">
+                    </ComboBox>
+                    <Button x:Name="ApplyToRegistry" Content="Apply to registry"  HorizontalAlignment="Right" Height="50" Width="150" Margin="20,5,20,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="ApplyToRegistry_Click"></Button>
                 </DockPanel>
                 <Grid>
                     <DataGrid x:Name="PreferencesDataGrid"
