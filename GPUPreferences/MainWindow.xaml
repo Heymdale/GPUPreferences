@@ -40,6 +40,7 @@
                               SelectedItem="{Binding Path=PreferencesState}"
                               ItemsSource="{Binding Source={StaticResource States}}">
                     </ComboBox>
+                    <Button x:Name="AddAppToContextMenu" Content="Add app to context menu"  HorizontalAlignment="Right" Height="50" Width="150" Margin="20,5,20,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="AddAppToContextMenu_Click"></Button>
                     <Button x:Name="ApplyToRegistry" Content="Apply to registry"  HorizontalAlignment="Right" Height="50" Width="150" Margin="20,5,20,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99" Click="ApplyToRegistry_Click"></Button>
                 </DockPanel>
                 <Grid>

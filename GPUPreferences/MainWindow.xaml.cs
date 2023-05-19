@@ -65,5 +65,11 @@ namespace GPUPreferences
         {
             RegistryTools.ChangeRegKey(data);
         }
+
+        private void AddAppToContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenuSettings settingsWindow =  new ContextMenuSettings();
+            settingsWindow.Show();
+        }
     }
 }

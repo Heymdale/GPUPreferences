@@ -91,10 +91,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContextMenuSettings.xaml.cs">
+      <DependentUpon>ContextMenuSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ContextMenuSettings\AllSettings.cs" />
+    <Compile Include="Model\ContextMenuSettings\PositionOptions.cs" />
     <Compile Include="Model\PrefStateForCB.cs" />
     <Compile Include="Services\ChangeStates.cs" />
     <Compile Include="Services\DeleteChecked.cs" />
     <Compile Include="Services\Checker.cs" />
+    <Page Include="ContextMenuSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
