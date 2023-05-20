@@ -20,15 +20,15 @@ namespace GPUPreferences.Model.ContextMenuSettings
             DependencyProperty.Register(nameof(Position), typeof(PositionOptions), typeof(AllSettings), new PropertyMetadata((PositionOptions)0));
 
 
-        public bool Extend
+        public bool Extended
         {
-            get { return (bool)GetValue(ExtendProperty); }
-            set { SetValue(ExtendProperty, value); }
+            get { return (bool)GetValue(ExtendedProperty); }
+            set { SetValue(ExtendedProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ExtendProperty =
-            DependencyProperty.Register(nameof(Extend), typeof(bool), typeof(AllSettings), new PropertyMetadata(false));
+        public static readonly DependencyProperty ExtendedProperty =
+            DependencyProperty.Register(nameof(Extended), typeof(bool), typeof(AllSettings), new PropertyMetadata(false));
 
 
         public string Title
@@ -39,7 +39,7 @@ namespace GPUPreferences.Model.ContextMenuSettings
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register(nameof(Title), typeof(string), typeof(AllSettings), new PropertyMetadata("Set app mode"));
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(AllSettings), new PropertyMetadata("Set app mode to"));
 
 
         public bool AutoMode
@@ -64,14 +64,14 @@ namespace GPUPreferences.Model.ContextMenuSettings
             DependencyProperty.Register(nameof(PowerSavingMode), typeof(bool), typeof(AllSettings), new PropertyMetadata(true));
 
 
-        public bool HighPerfomance
+        public bool HighPerformanceMode
         {
-            get { return (bool)GetValue(HighPerfomanceProperty); }
-            set { SetValue(HighPerfomanceProperty, value); }
+            get { return (bool)GetValue(HighPerformanceModeProperty); }
+            set { SetValue(HighPerformanceModeProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for HighPerfomance.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HighPerfomanceProperty =
-            DependencyProperty.Register(nameof(HighPerfomance), typeof(bool), typeof(AllSettings), new PropertyMetadata(true));
+        // Using a DependencyProperty as the backing store for HighPerformanceMode.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HighPerformanceModeProperty =
+            DependencyProperty.Register(nameof(HighPerformanceMode), typeof(bool), typeof(AllSettings), new PropertyMetadata(true));
     }
 }

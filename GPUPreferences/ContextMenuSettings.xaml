@@ -7,8 +7,37 @@
         xmlns:local="clr-namespace:GPUPreferences"
         xmlns:settings="clr-namespace:GPUPreferences.Model.ContextMenuSettings"
         mc:Ignorable="d"
-        Title="Context Menu Settings" Height="450" Width="800">
+        Title="Context Menu Settings" Height="300" Width="500">
     <Window.Resources>
+        <Style TargetType="Control" x:Key="baseStyle">
+            <Setter Property="Background" Value="#FF232323"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"/>
+            <Setter Property="Foreground" Value="#FFCACB99"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource baseStyle}"/>
+        <Style x:Key="baseInput" TargetType="Control" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20,5,5,5"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource baseInput}"/>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource baseInput}"/>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource baseInput}">
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
         <!--Create list of enumeration values-->
         <ObjectDataProvider x:Key="Positions" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -17,19 +46,40 @@
         </ObjectDataProvider>
     </Window.Resources>
     <Grid Background="#FF232323">
-        <Border BorderBrush="#FF777777" BorderThickness="1" Margin="10,10,10,10">
-            <StackPanel Margin="0,0,0,0">
+        <Border BorderBrush="#FF777777" BorderThickness="1" Margin="10">
+            <StackPanel>
+                <DockPanel>
+                    <TextBox x:Name="TitleTextBox"
+                             Text="{Binding Path=Title}"
+                    />
+                    <Label>Context menu string</Label>
+                </DockPanel>
+                <DockPanel>
+                    <CheckBox x:Name="ExtendedCheckBox" 
+                              IsChecked="{Binding Path=Extended}"
+                              />
+                    <Label>Extended. If this active, context will show only with Shift key</Label>
+                </DockPanel>
                 <DockPanel>
                     <ComboBox x:Name="Position" 
-                              HorizontalAlignment="Left" 
-                              Height="25" Width="150" 
-                              Margin="20,5,0,5" 
-                              VerticalAlignment="Center" 
-                              BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" 
-                              Foreground="#000000"
+                              SelectedItem="{Binding Path=Position}"
                               ItemsSource="{Binding Source={StaticResource Positions}}"/>
-                    <Button x:Name="ApplySettingsToRegistry" Content="Apply settings to registry"  HorizontalAlignment="Right" Height="50" Width="150" Margin="20,5,20,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99"/>
-                    <Button x:Name="DeleteAppFromRegistry" Content="Delete app registry"  HorizontalAlignment="Right" Height="50" Width="150" Margin="20,5,20,5" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Background="#FF232323" Foreground="#FFCACB99"/>
+                    <Label>Position. Top, bottom or nevermind.</Label>
+                </DockPanel>
+                <DockPanel>
+                    <Label HorizontalAlignment="Center">Which mode will be present in context menu</Label>
+                </DockPanel>
+                <DockPanel>
+                    <CheckBox IsChecked="{Binding Path=AutoMode}"/>
+                    <Label>Auto</Label>
+                    <CheckBox IsChecked="{Binding Path=PowerSavingMode}"/>
+                    <Label>Power Saving</Label>
+                    <CheckBox IsChecked="{Binding Path=HighPerformanceMode}"/>
+                    <Label>High Performance</Label>
+                </DockPanel>
+                <DockPanel>
+                    <Button x:Name="ApplySettingsToRegistry" Content="Apply settings to registry"  HorizontalAlignment="Right" Click="ApplySettingsToRegistry_Click"/>
+                    <Button x:Name="DeleteAppFromRegistry" Content="Delete app registry"  HorizontalAlignment="Right" Click="DeleteAppFromRegistry_Click"/>
                 </DockPanel>
             </StackPanel>
         </Border>

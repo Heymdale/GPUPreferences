@@ -98,6 +98,7 @@
     <Compile Include="Model\ContextMenuSettings\PositionOptions.cs" />
     <Compile Include="Model\PrefStateForCB.cs" />
     <Compile Include="Services\ChangeStates.cs" />
+    <Compile Include="Services\ContextMenuServices\ContextMenuRegistryService.cs" />
     <Compile Include="Services\DeleteChecked.cs" />
     <Compile Include="Services\Checker.cs" />
     <Page Include="ContextMenuSettings.xaml">
