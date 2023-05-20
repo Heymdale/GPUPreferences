@@ -37,9 +37,14 @@ namespace GPUPreferences.Services
         {
             foreach (var el in data)
             {
-                string regPrefState = $"GpuPreference={(int)el.State};";
-                writableDirectory.SetValue(el.Address, regPrefState);
+                ChangeRegValue(el.State, el.Address);
             }
+        }
+
+        public static void ChangeRegValue(PrefState state, string address)
+        {
+            string regPrefState = $"GpuPreference={(int)state};";
+            writableDirectory.SetValue(address, regPrefState);
         }
     }
 }

@@ -28,7 +28,6 @@ namespace GPUPreferences
             PreferencesComboBox.DataContext = preferencesState;
             RegistryTools.ReadRegistry(data);
             PreferencesDataGrid.ItemsSource = data;
-
         }
 
         private void LoadCurrentPreferences_Click(object sender, RoutedEventArgs e)
