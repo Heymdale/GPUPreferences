@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using GPUPreferences.Model;
-using Microsoft.Xaml.Behaviors.Core;
 
 namespace GPUPreferences.Services
 {

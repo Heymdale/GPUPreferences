@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using GPUPreferences.Model;
 
 namespace GPUPreferences.Services
 {
+    // TODO: OpenSubkey and CreateSubkey must be close() after work
     public class RegistryTools
     {
         private static readonly RegistryKey HKCU = Registry.CurrentUser;

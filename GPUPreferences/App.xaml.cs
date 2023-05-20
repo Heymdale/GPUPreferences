@@ -1,11 +1,6 @@
 ﻿using GPUPreferences.Model;
 using GPUPreferences.Services;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GPUPreferences
@@ -22,6 +17,7 @@ namespace GPUPreferences
                 PrefState prefState = (PrefState)Convert.ToInt32(e.Args[0]);
                 string path = e.Args[1];
                 RegistryTools.ChangeRegValue(prefState, path);
+                Current.Shutdown();
             }
             else 
             {
